@@ -37,9 +37,9 @@ function getNeighbors(rowsCnt, colsCnt, pos) {
     neighbors.push(pos + colsCnt);
   if (pos - colsCnt >= 0)
     neighbors.push(pos - colsCnt);
-  if (pos + 1 < squaresCnt)
+  if ((pos + 1) % colsCnt !== 0 && pos + 1 < squaresCnt)
     neighbors.push(pos + 1);
-  if (pos - 1 >= 0)
+  if (pos % colsCnt !== 0 && pos - 1 >= 0)
     neighbors.push(pos - 1);
   return neighbors;
 }
