@@ -4,9 +4,9 @@ import {
   MS_MARK_SQUARE,
 } from '../actions/actionTypes';
 
-const MS_ROWS = 8;
-const MS_COLS = 8;
-const MS_MINES = 10;
+const MS_ROWS = 3;
+const MS_COLS = 3;
+const MS_MINES = 2;
 
 const initialState = {
   rowsCnt: MS_ROWS,
@@ -127,8 +127,8 @@ function markSquare(state, index) {
       ...state.field.slice(index + 1)
     ];
     const markStatus = field.reduce((res, square) => ({
-      marked: res.marked + square.isMarked ? 1 :0,
-      right: res.right + (square.isMarked && square.isMined) ? 1 : 0,
+      marked: res.marked + (square.isMarked ? 1 : 0),
+      right: res.right + ((square.isMarked && square.isMined) ? 1 : 0),
     }), { marked: 0, right: 0 });
     if (state.minesCnt === markStatus.marked && state.minesCnt === markStatus.right) {
       const status = { finished: true, won: true };
